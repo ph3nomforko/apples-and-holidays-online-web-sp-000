@@ -8,7 +8,7 @@ def add_supply_to_winter_holidays(holiday_hash, supply)
   holiday_hash.each do |season, holiday|
     if season == :winter
       holiday.each do |attribute, data|
-        data << supply
+        data.push(supply)
       end
     end
   end
@@ -18,7 +18,7 @@ def add_supply_to_memorial_day(holiday_hash, supply)
   holiday_hash.each do |season, holiday|
     if season == :spring
       holiday.each do |attribute, data|
-        data << supply
+        data.push(supply)
       end
     end
   end
@@ -45,7 +45,7 @@ def all_supplies_in_holidays(holiday_hash)
   holiday_hash.each do |season, holiday|
     puts "#{season.capitalize}:"
     holiday.each do |attribute, value|
-      puts "  #{attribute.split(" ").capitalize}: #{value.join(", ")}"
+      puts "  #{attribute.to_s.gsub("_", " ").split.map(&:capitalize).join(" ")}: #{value.join(", ")}"
     end
   end
 end
